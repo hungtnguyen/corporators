@@ -1,0 +1,70 @@
+<% content_for :title do %>
+    <%= t('.corporators') %>
+<% end %>
+
+<% content_for :page_title do %>
+    <i class="icon-users"></i> <%= t('.corporators') %>
+<% end %>
+
+<% content_for :page_toolbar do %>
+    <%= erp_component('button/create', {
+        text: t('.create'),
+        href: erp_corporators.new_backend_corporator_path
+    }) %>
+<% end %>
+
+<%= erp_datalist(
+    url: erp_corporators.list_backend_corporators_path,
+    keyword: true,
+    filters: [
+        {
+            text: t('.active'), name: 'status', value: Erp::Corporators::Corporator::STATUS_ACTIVE, checked: true
+        },
+        {
+            text: t('.inactive'), name: 'status', value: Erp::Corporators::Corporator::STATUS_INACTIVE, checked: false
+        },
+        {
+            divider: true
+        },
+        {
+            text: t('.leadership'), name: 'corp_type', value: Erp::Corporators::Corporator::TYPE_LEADERSHIP, checked: false
+        },
+        {
+            text: t('.ownership'), name: 'corp_type', value: Erp::Corporators::Corporator::TYPE_OWNERSHIP, checked: false
+        },
+        
+    ],
+    columns: [
+        {
+            text: t('.code'), name: 'code', value: true, checked: true
+        },
+        {
+            text: t('.name'), name: 'name', value: true, checked: true
+        },
+        {
+            text: t('.corp_type'), name: 'corp_type', value: true, checked: true
+        },
+        {
+            text: t('.phone'), name: 'phone', value: true, checked: true
+        },
+        {
+            text: t('.email'), name: 'email', value: true, checked: false
+        },
+        {
+            text: t('.address'), name: 'address', value: true, checked: false
+        },
+        {
+            text: t('.parent_contact'), name: 'parent_contact', value: true, checked: false
+        },
+        {
+            text: t('status'), name: 'status', value: true, checked: true
+        },
+        {
+            text: t('creator'), name: 'creator', value: true, checked: true
+        },
+        {
+            text: t('created_at'), name: 'created_at', value: true, checked: true
+        }
+    ],
+    sort: { sort_by: 'erp_corporators_corporators.created_at', sort_direction: 'desc' }
+) %>

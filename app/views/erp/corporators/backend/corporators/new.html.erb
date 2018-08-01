@@ -1,0 +1,21 @@
+<% content_for :title do %>
+    <%= t('.create') %>
+<% end %>
+
+<% content_for :page_title do %>    
+    <a href="<%= erp_corporators.backend_corporators_path %>">
+    <i class="icon-users"></i> <%= t('.corporators') %>
+    </a> / <%= t('.create') %>
+<% end %>
+
+<div class="row">
+    <div class="col-md-12">
+        <% if @corporator.errors.any? %>
+            <%= erp_form_control("form_error_message") %>
+        <% end %>
+        
+        <!-- BEGIN SAMPLE FORM PORTLET-->
+        <%= render 'form', corporator: @corporator %>
+        <!-- END SAMPLE FORM PORTLET-->
+    </div>
+</div>

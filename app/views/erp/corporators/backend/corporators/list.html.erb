@@ -1,0 +1,133 @@
+<table class="table table-advance table-hover table-striped table-checkable order-column">
+    <thead>
+        <tr>
+            <th width='1%'>
+                <%= erp_datalist_check_all %>
+            </th>
+            <% if get_columns(params).include?("code") %>
+                <th class="sortable" sort-by='erp_contacts_contacts.code'>
+                    <%= t('.code') %>
+                </th>
+            <% end %>
+            <% if get_columns(params).include?("name") %>
+                <th class="sortable" sort-by='erp_contacts_contacts.name'>
+                    <%= t('.name') %>
+                </th>
+            <% end %>
+            <% if get_columns(params).include?("corp_type") %>
+                <th>
+                    <%= t('.corp_type') %>
+                </th>
+            <% end %>
+            <% if get_columns(params).include?("phone") %>
+                <th>
+                    <%= t('.phone') %>
+                </th>
+            <% end %>
+            <% if get_columns(params).include?("email") %>
+                <th>
+                    <%= t('.email') %>
+                </th>
+            <% end %>
+            <% if get_columns(params).include?("address") %>
+                <th>
+                    <%= t('.address') %>
+                </th>
+            <% end %>
+            <% if get_columns(params).include?("parent_contact") %>
+            <th>
+                <%= t('.parent_contact') %>
+            </th>
+            <% end %>
+            <% if get_columns(params).include?("status") %>
+                <th>
+                    <%= t('status') %>
+                </th>
+            <% end %>
+            <% if get_columns(params).include?("creator") %>
+                <th>
+                    <%= t('creator') %>
+                </th>
+            <% end %>
+            <% if get_columns(params).include?("created_at") %>
+                <th class="sortable" sort-by='erp_corporators_corporators.created_at'>
+                    <%= t('created_at') %>
+                </th>
+            <% end %>
+            <th width="7%" class="sortable text-nowrap" sort-by='erp_corporators_corporators.custom_order'>
+                <%= t('.custom_order') %>
+            </th>
+            <th width="7%"><%= t('actions') %></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @corporators.each do |corporator| %>
+            <tr class="odd gradeX <%= 'blurred' if corporator.is_inactive? %> has-child-table"
+                data-url="<%= erp_corporators.corporator_details_backend_corporators_path(id: corporator.id) %>">
+                <td>
+                    <%= erp_datalist_check_row(id: corporator.id) %>
+                </td>
+                <% if get_columns(params).include?("code") %>
+                    <td class="text-nowrap">
+                        <strong><%= corporator.code %></strong>
+                    </td>
+                <% end %>
+                <% if get_columns(params).include?("name") %>
+                <td>
+                    <span class="title"><%= corporator.name %></span>
+                </td>
+                <% end %>
+                <% if get_columns(params).include?("corp_type") %>
+                <td>
+                    <%= t(".#{corporator.corp_type}") %>
+                </td>
+                <% end %>
+                <% if get_columns(params).include?("phone") %>
+                <td><%= corporator.phone %><br><%= corporator.hotline %></td>
+                <% end %>
+                <% if get_columns(params).include?("email") %>
+                <td><%= corporator.email %></td>
+                <% end %>
+                <% if get_columns(params).include?("address") %>
+                <td><%= display_contact_address(corporator) %></td>
+                <% end %>
+                <% if get_columns(params).include?("parent_contact") %>
+                <td>
+                    <%= corporator.parent.name if corporator.parent.present? %>
+                </td>
+                <% end %>
+                <% if get_columns(params).include?("status") %>
+                    <td>
+                        <%= status_label(corporator.status) %>
+                    </td>
+                <% end %>
+                <% if get_columns(params).include?("creator") %>
+                    <td>
+                        <%= erp_component('avatar', {
+                            user: corporator.creator
+                        }) %>
+                    </td>
+                <% end %>
+                <% if get_columns(params).include?("created_at") %>
+                    <td><%= corporator.created_at.strftime("%d/%m/%Y") %></td>
+                <% end %>
+                <td class="text-center text-semibold">
+                    <%= erp_datalist_order_column({
+                        item: corporator,
+                        move_up_url: erp_corporators.move_up_backend_corporators_path(id: corporator),
+                        move_down_url: erp_corporators.move_down_backend_corporators_path(id: corporator),
+                        sort_by: 'erp_corporators_corporators.custom_order'
+                    }) %>
+                </td>
+                <td>
+                    <%= corporator_dropdown_actions(corporator) %>
+                </td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+<% if @corporators.empty? %>
+    <div class="datalist-empty-line"><%= t('no_matching_records_found') %></div>
+<% end %>
+
+<%= erp_datalist_pagination(@corporators) %>

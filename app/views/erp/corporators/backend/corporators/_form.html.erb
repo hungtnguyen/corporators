@@ -1,0 +1,233 @@
+<%= form_for([erp_corporators, :backend, corporator], html: {multipart: true}) do |f| %>
+    <div class="form-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="portlet light bordered">
+                    <div class="portlet-body form">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <%= erp_form_control('image', {
+                                    img_src: corporator.image_url.medium,
+                                    name: 'corporator[image_url]',
+                                    width: 110,
+                                    height: 110
+                                }) %>
+                            </div>
+                            <div class="col-md-8">
+                                <%= erp_form_control("radio", {
+                                    name: 'corporator[corp_type]',
+                                    label: t('.type'),
+                                    value: @corporator.corp_type,
+                                    options: Erp::Corporators::Corporator.get_corporator_type_options()
+                                }) %>
+                                <%= erp_form_control("text", {
+                                    name: 'corporator[code]',
+                                    value: corporator.code,
+                                    label: t('.code'),
+                                    placeholder: t('.enter_code'),
+                                    errors: corporator.errors.full_messages_for(:code)
+                                }) %>
+                            </div>
+                        </div>
+                        <%= erp_form_control("text", {
+                            name: 'corporator[name]',
+                            value: corporator.name,
+                            label: t('.name'),
+                            placeholder: t('.enter_name'),
+                            required: true,
+                            errors: corporator.errors.full_messages_for(:name)
+                        }) %>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6">
+                                <%= erp_form_control("text", {
+                                    name: 'corporator[phone]',
+                                    value: corporator.phone,
+                                    label: t('.phone'),
+                                    placeholder: t('.enter_phone')
+                                }) %>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <%= erp_form_control("text", {
+                                    name: 'corporator[hotline]',
+                                    value: corporator.hotline,
+                                    label: t('.hotline'),
+                                    placeholder: t('.enter_hotline')
+                                }) %>
+                            </div>
+						</div>
+						<%= erp_form_control("email", {
+							name: 'corporator[email]',
+							value: corporator.email,
+							label: t('.email_address'),
+							placeholder: t('.enter_email_address')
+						}) %>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="portlet light bordered">
+                    <div class="portlet-body form">
+                        <div class="hiddable-control"
+                            data-cond-item="input[name='corporator[corp_type]']"
+                            data-cond-value="<%= Erp::Contacts::Contact::TYPE_LEADERSHIP %>">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6">
+                                    <%= erp_form_control('date', {
+                                        label: t('.birthday'),
+                                        name: 'corporator[birthday]',
+                                        value: corporator.birthday,
+                                        placeholder: t('.choose_birthday')
+                                    }) %>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <%= erp_form_control('select', {
+                                        label: t('.gender'),
+                                        name: 'corporator[gender]',
+                                        value: corporator.gender,
+                                        options: Erp::Corporators::Corporator.get_gender_options()
+                                    }) %>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hiddable-control"
+                            data-cond-item="input[name='corporator[corp_type]']"
+                            data-cond-value="<%= Erp::Corporators::Corporator::TYPE_OWNERSHIP %>">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <%= erp_form_control("text", {
+                                        name: 'corporator[tax_code]',
+                                        value: corporator.tax_code,
+                                        label: t('.tax_code'),
+                                        placeholder: t('.enter_tax_code')
+                                    }) %>
+                                </div>
+                                <div class="col-md-6">
+                                    <%= erp_form_control("text", {
+                                        name: 'corporator[fax]',
+                                        value: corporator.fax,
+                                        label: t('.fax'),
+                                        placeholder: t('.enter_fax'),
+                                    }) %>
+                                </div>
+                            </div>
+                        </div>
+                        <% if Erp::Core.available?("areas") %>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <%= erp_form_control("dataselect", {
+                                        name: 'corporator[country_id]',
+                                        value: corporator.country_id,
+                                        text: corporator.country_name,
+                                        placeholder: t('.choose_country'),
+                                        label: t('.country'),
+                                        url: erp_areas.dataselect_backend_countries_path(format: 'json')
+                                    }) %>
+                                </div>
+                                <div class="col-md-6">
+                                    <%= erp_form_control("dataselect", {
+                                        name: 'corporator[state_id]',
+                                        value: corporator.state_id,
+                                        text: corporator.state_name,
+                                        placeholder: t('.choose_state'),
+                                        label: t('.state'),
+                                        url: erp_areas.dataselect_backend_states_path(format: 'json'),
+                                        create: {
+                                            url: erp_areas.new_backend_state_path,
+                                            title: t('.create'),
+                                            container_selector: '.new_state',
+                                            input_selector: 'input[name="state[name]"]'
+                                        },
+                                        parent_control: "input[name='corporator[country_id]']",
+                                        parent_id: "country_id"
+                                    }) %>
+                                </div>
+                                <div class="col-md-6">
+                                    <%= erp_form_control("dataselect", {
+                                        name: 'corporator[district_id]',
+                                        value: corporator.district_id,
+                                        text: corporator.district_name,
+                                        placeholder: t('.choose_district'),
+                                        label: t('.district'),
+                                        url: erp_areas.dataselect_backend_districts_path(format: 'json'),
+                                        parent_control: "input[name='corporator[state_id]']",
+                                        parent_id: "state_id"
+                                    }) %>
+                                </div>
+                                <div class="col-md-6">
+                                    <%= erp_form_control("text", {
+                                        name: 'corporator[address]',
+                                        value: corporator.address,
+                                        label: t('.address'),
+                                        placeholder: t('.enter_address')
+                                    }) %>
+                                </div>
+                            </div>
+                        <% end %>
+                        <%= erp_form_control("text", {
+                            name: 'corporator[website]',
+                            value: corporator.website,
+                            label: t('.website'),
+                            placeholder: t('.eg_website')
+                        }) %>
+						<%= erp_form_control("dataselect", {
+                            name: 'corporator[parent_id]',
+                            value: corporator.parent_id,
+                            text: corporator.parent_name,
+                            label: 'Liên hệ con của',
+                            placeholder: 'Chọn liên hệ cấp cha',
+                            url: erp_corporators.dataselect_backend_corporators_path(format: 'json', corporator_id: corporator.id),
+                        }) %>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tabbable-custom ">
+                    <ul class="nav nav-tabs ">
+						<% if false %>
+							<li class="active">
+								<a href="#tab_5_1" data-toggle="tab"> <%= t('.corporators_address') %> </a>
+							</li>
+						<% end %>
+                        <li class="active">
+                            <a href="#tab_5_3" data-toggle="tab"> <%= t('.notes') %> </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+						<% if false %>
+							<div class="tab-pane active" id="tab_5_1">
+								<%= erp_form_control("addablelist", {
+									button_text: t('.add_corporator'),
+									create: {
+										url: erp_corporators.new_backend_corporator_corporator_path(corporator_id: (!corporator.id ? '00' : corporator.id)),
+										title: t('.create'),
+										container_selector: '.new_corporator',
+										modal_size: 'md',
+										list_partial: 'backend/corporators_corporators/corporator',
+										list_items: corporator.corporators,
+										list_item: :corporator
+									}
+								}) %>
+							</div>
+						<% end %>
+                        <div class="tab-pane" id="tab_5_3">
+                            <%= erp_form_control("textarea", {
+                                name: 'corporator[note]',
+                                value: corporator.note,
+                                placeholder: t('.enter_note')
+                            }) %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%= erp_component('button/save', {
+        text: t('submit')
+    }) %>
+    <%= erp_component('button/cancel', {
+        text: t('cancel'),
+        href: erp_corporators.backend_corporators_path
+    }) %>
+<% end %>

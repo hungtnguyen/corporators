@@ -1,0 +1,100 @@
+vi:
+  vietnames: "Tiếng Việt"
+  english: "Tiếng Anh"
+  vi_content: "Nội dung tiếng Việt"
+  en_content: "Nội dung tiếng Anh"
+  
+  no_matching_records_found: "Không tìm thấy kết quả trong danh sách"
+  
+  erp:
+    corporators:
+      backend:
+        corporators:
+          leadership: "Lãnh đạo"
+          ownership: "Doanh nghiệp"
+          archive:
+            success: "Ngưng sử dụng thành công"
+          unarchive:
+            success: "Sử dụng lại thành công"
+          create:
+            success: "Khởi tạo thành công"
+          update:
+            success: "Cập nhật thành công"
+          set_active:
+            success: "Kích hoạt thành công"
+          set_inactive:
+            success: "Ngưng kích hoạt thành công"
+          destroy:
+            success: "Đã xóa thành công"
+          index:
+            corporators: "Hội đồng thành viên"
+            create: "Thêm mới"
+            leadership: "Ban lãnh đạo"
+            ownership: "Doanh nghiệp"
+            code: "Mã đối tượng"
+            name: "Tên đối tượng"
+            corp_type: "Loại"
+            phone: "Điện thoại"
+            email: "Email"
+            address: "Địa chỉ"
+            parent_contact: "Đối tượng cha"
+            active: "Đang hiển thị"
+            inactive: "Không hiển thị"
+          list:
+            code: "Mã đối tượng"
+            name: "Tên đối tượng"
+            corp_type: "Loại"
+            phone: "Điện thoại"
+            email: "Email"
+            address: "Địa chỉ"
+            parent_contact: "Đối tượng cha"
+            custom_order: "Sắp xếp"
+            leadership: "Ban lãnh đạo"
+            ownership: "Công ty/D.nghiệp"
+            active: "Đang hiển thị"
+            inactive: "Không hiển thị"
+            set_active: "Kích hoạt"
+            set_active_confirm: "Bạn đang xác nhận kích hoạt?"
+            set_inactive: "Ngưng kích hoạt"
+            set_inactive_confirm: "Bạn chắn chắn muốn ngưng kích hoạt?"
+            delete: "Xóa thành viên"
+            delete_confirm: "Bạn chắn chắn muốn xóa thông tin này?"
+          new:
+            corporators: "Hội đồng thành viên"
+            create: "Thêm mới"
+          edit:
+            corporators: "Hội đồng thành viên"
+            create: "Thêm mới"
+          form:
+            type: "Loại"
+            code: "Mã đối tượng"
+            enter_code: "Nhập mã hoặc để trống"
+            name: "Tên đối tượng"
+            enter_name: "Nhập tên đối tượng"
+            phone: "Số điện thoại"
+            enter_phone: "Nhập số điện thoại"
+            hotline: "Đường dây nóng"
+            enter_hotline: "Nhập số đường dây nóng"
+            email_address: "Địa chỉ email"
+            enter_email_address: "Nhập địa chỉ email"
+            tax_code: "Mã số thuế"
+            enter_tax_code: "Nhập mã số thuế doanh nghiệp"
+            fax: "Số Fax"
+            enter_fax: "Nhập số máy Fax"
+            birthday: "Ngày sinh"
+            choose_birthday: "Chọn ngày sinh"
+            gender: "Giới tính"
+            country: "Nước/Quốc gia"
+            choose_country: "Chọn tên nước/quốc gia"
+            state: "Tỉnh/TP trực thuộc TƯ"
+            choose_state: "Chọn tỉnh/thành phố"
+            district: "Quận/Huyện/Thị xã"
+            choose_district: "Chọn quận/huyện/thị xã"
+            address: "Địa chỉ"
+            enter_address: "SN/Thôn/Ấp, Xã/phường,T.trấn"
+            website: "Trang web"
+            eg_website: "Ví dụ: http://songhanhcts.com/"
+            contacts_address: "Các liên hệ khác"
+            notes: "Ghi chú"
+            enter_note: "Nhập nội dung ghi chú"
+            add_contact: "Thêm liên hệ"
