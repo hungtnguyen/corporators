@@ -1,0 +1,19 @@
+<li class="nav-item <%= "active open" if ["erp/corporators/backend/corporators"].include?(params[:controller]) %>">
+    <a href="javascript:;" class="nav-link nav-toggle">
+        <i class="fa fa-black-tie"></i>
+        <span class="title"><%= t('.corporators') %></span>
+        <% if ["erp/corporators/backend/corporators"].include?(params[:controller]) %>
+            <span class="selected"></span>
+            <span class="arrow open"></span>
+        <% else %>
+            <span class="arrow"></span>
+        <% end %>
+    </a>
+    <ul class="sub-menu">
+        <li class="nav-item <%= "active" if ["erp/corporators/backend/corporators"].include?(params[:controller]) %>">
+            <a href="<%= erp_corporators.backend_corporators_path %>" class="nav-link">
+                <span class="title"><%= t('.corporator') %></span>
+            </a>
+        </li>
+    </ul>
+</li>

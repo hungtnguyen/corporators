@@ -47,7 +47,7 @@ module Erp
                 value: @corporator.id
               }
             else
-              redirect_to erp_corporators.backend_corporators_path(@corporator), notice: t('.success')
+              redirect_to erp_corporators.backend_corporators_path, notice: t('.success')
             end
           else
             render :new
@@ -65,7 +65,7 @@ module Erp
                 value: @corporator.id
               }
             else
-              redirect_to erp_corporators.backend_corporators_path(@corporator), notice: t('.success')
+              redirect_to erp_corporators.backend_corporators_path, notice: t('.success')
             end
           else
             render :edit
@@ -145,6 +145,14 @@ module Erp
           }
           end
         end
+        
+        def dataselect
+          respond_to do |format|
+            format.json {
+              render json: Corporator.dataselect(params[:keyword], params)
+            }
+          end
+        end
     
         private
           # Use callbacks to share common setup or constraints between actions.
@@ -158,7 +166,7 @@ module Erp
               :parent_id, :image_url, :corp_type, :code, :name, :birthday, :gender,
               :country_id, :state_id, :district_id, :address,
               :phone, :hotline, :email, :website, :fax, :tax_code, :note,
-              :archived, :user_id,
+              :roll,
               #corporator_ids: []
             )
           end

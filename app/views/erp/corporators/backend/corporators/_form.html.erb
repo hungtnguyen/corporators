@@ -111,6 +111,26 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <%= erp_form_control("dataselect", {
+                                    name: 'corporator[parent_id]',
+                                    value: corporator.parent_id,
+                                    text: corporator.parent_name,
+                                    label: 'Liên hệ con của',
+                                    placeholder: 'Chọn liên hệ cấp cha',
+                                    url: erp_corporators.dataselect_backend_corporators_path(format: 'json', corporator_id: corporator.id),
+                                }) %>
+                            </div>
+                            <div class="col-md-6">
+                                <%= erp_form_control("text", {
+                                    name: 'corporator[roll]',
+                                    value: corporator.roll,
+                                    label: t('.roll'),
+                                    placeholder: t('.enter_roll')
+                                }) %>
+                            </div>
+                        </div>
                         <% if Erp::Core.available?("areas") %>
                             <div class="row">
                                 <div class="col-md-6">
@@ -168,14 +188,6 @@
                             value: corporator.website,
                             label: t('.website'),
                             placeholder: t('.eg_website')
-                        }) %>
-						<%= erp_form_control("dataselect", {
-                            name: 'corporator[parent_id]',
-                            value: corporator.parent_id,
-                            text: corporator.parent_name,
-                            label: 'Liên hệ con của',
-                            placeholder: 'Chọn liên hệ cấp cha',
-                            url: erp_corporators.dataselect_backend_corporators_path(format: 'json', corporator_id: corporator.id),
                         }) %>
                     </div>
                 </div>

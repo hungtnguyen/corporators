@@ -98,3 +98,12 @@ vi:
             notes: "Ghi chú"
             enter_note: "Nhập nội dung ghi chú"
             add_contact: "Thêm liên hệ"
+            roll: "Vai trò/Chức vụ"
+            enter_roll: "Nhập vai trò/chức vụ"
+  layouts:
+    erp:
+      backend:
+        sidebar:
+          corporators: "Hội đồng/Ban quản trị"
+          corporator: "Hội đồng thành viên"
+          

@@ -57,6 +57,11 @@ module Erp::Corporators
         {text: I18n.t('erp.corporators.backend.corporators.ownership'),value: self::TYPE_OWNERSHIP}
       ]
     end
+    
+    # get active
+    def self.all_active
+      self.where(status: self::STATUS_ACTIVE)
+    end
 
     # Filters
     def self.filter(query, params)
@@ -222,7 +227,7 @@ module Erp::Corporators
     
     # get leadership corporators
     def self.get_leadership_corporators
-      Erp::Corporators::Corporator.where(contact_type: Erp::Corporators::Corporator::TYPE_LEADERSHIP)
+      Erp::Corporators::Corporator.where(corp_type: Erp::Corporators::Corporator::TYPE_LEADERSHIP)
     end
   end
 end
