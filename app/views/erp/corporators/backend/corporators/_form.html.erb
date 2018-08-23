@@ -198,36 +198,51 @@
                 <div class="tabbable-custom ">
                     <ul class="nav nav-tabs ">
 						<% if false %>
-							<li class="active">
-								<a href="#tab_5_1" data-toggle="tab"> <%= t('.corporators_address') %> </a>
-							</li>
 						<% end %>
                         <li class="active">
                             <a href="#tab_5_3" data-toggle="tab"> <%= t('.notes') %> </a>
                         </li>
+                        <li>
+                            <a href="#tab_5_1" data-toggle="tab"> <%= 'Hồ sơ năng lực' %> </a>
+                        </li>
                     </ul>
                     <div class="tab-content">
-						<% if false %>
-							<div class="tab-pane active" id="tab_5_1">
-								<%= erp_form_control("addablelist", {
-									button_text: t('.add_corporator'),
-									create: {
-										url: erp_corporators.new_backend_corporator_corporator_path(corporator_id: (!corporator.id ? '00' : corporator.id)),
-										title: t('.create'),
-										container_selector: '.new_corporator',
-										modal_size: 'md',
-										list_partial: 'backend/corporators_corporators/corporator',
-										list_items: corporator.corporators,
-										list_item: :corporator
-									}
-								}) %>
-							</div>
-						<% end %>
                         <div class="tab-pane active" id="tab_5_3">
                             <%= erp_form_control("textarea", {
                                 name: 'corporator[note]',
                                 value: corporator.note,
                                 placeholder: t('.enter_note')
+                            }) %>
+                        </div>
+                        <div class="tab-pane" id="tab_5_1">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <%= erp_form_control("text", {
+                                        name: 'corporator[seniority]',
+                                        value: corporator.seniority,
+                                        label: t('.seniority'),
+                                        placeholder: t('.enter_seniority')
+                                    }) %>
+                                </div>
+                                <div class="col-md-8">
+                                    <%= erp_form_control("dataselect", {
+                                        name: 'corporator[profile_album_id]',
+                                        value: corporator.profile_album_id,
+                                        text: corporator.profile_album_name,
+                                        placeholder: t('.choose_profile_album'),
+                                        label: t('.profile_album'),
+                                        help: t('.help_profile_album'),
+                                        url: erp_banners.dataselect_backend_categories_path(format: 'json',
+                                            position: [Erp::Banners::Category::POSITION_PROFILE_ALBUM]
+                                        )
+                                    }) %>
+                                </div>
+                            </div>
+                            <%= erp_form_control("editor", {
+                                name: 'corporator[job_qualification]',
+                                value: corporator.job_qualification,
+                                label: t('.job_qualification'),
+                                placeholder: t('.enter_job_qualification')
                             }) %>
                         </div>
                     </div>

@@ -166,7 +166,7 @@ module Erp
               :parent_id, :image_url, :corp_type, :code, :name, :birthday, :gender,
               :country_id, :state_id, :district_id, :address,
               :phone, :hotline, :email, :website, :fax, :tax_code, :note,
-              :roll,
+              :roll, :seniority, :job_qualification, :profile_album_id, 
               #corporator_ids: []
             )
           end

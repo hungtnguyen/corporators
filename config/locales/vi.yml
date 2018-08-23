@@ -100,6 +100,13 @@ vi:
             add_contact: "Thêm liên hệ"
             roll: "Vai trò/Chức vụ"
             enter_roll: "Nhập vai trò/chức vụ"
+            job_qualification: "Mô tả năng lực / kinh nghiệm"
+            enter_job_qualification: "Soạn nội dung mô tả năng lực / kinh nghiệm / kỹ năng..."
+            seniority: "Thâm niên trong nghề"
+            enter_seniority: "Nhập thâm niên công tác trong nghành/nghề"
+            profile_album: "Thư viện ảnh hồ sơ"
+            help_profile_album: "Ảnh hồ sơ (bằng cấp, chứng chỉ,...)"
+            choose_profile_album: "Chọn một thư viện ảnh"
   layouts:
     erp:
       backend:

@@ -10,6 +10,21 @@ module Erp::Corporators
 
     belongs_to :parent, class_name: "Erp::Corporators::Corporator", foreign_key: :parent_id, optional: true
     has_many :corporators, class_name: 'Erp::Corporators::Corporator', foreign_key: :parent_id
+    
+    if Erp::Core.available?("banners")
+      belongs_to :profile_album, class_name: "Erp::Banners::Category", optional: true
+      
+      def profile_album_name
+        profile_album.present? ? profile_album.name : ''
+      end
+      
+      # get album for profile
+      def get_profile_albums
+        if profile_album.present?
+          Erp::Banners::Banner.get_active.where(category_id: self.profile_album_id)
+        end
+      end
+    end
 
     MAIN_CONTACT_ID = 1
 
